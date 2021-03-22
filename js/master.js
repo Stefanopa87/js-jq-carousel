@@ -10,7 +10,7 @@ function nextClick(){
   // creo 2 casistiche per il loop:
   if (activeImg.hasClass('last')) { // .hasClass è una function di JQ per chiedere
                                     // se un elemento ha quella classe
-    var nextImg = $('img.first');
+    var nextImg = $('.first');
     // quindi se incontri LAST la next sarà img.first
 
     activeImg.removeClass('active');
@@ -25,6 +25,25 @@ function nextClick(){
   }
 }
 
+function nextClickCircle(){
+
+  var activeCircle = $('.active_circle');
+
+  if (activeCircle.hasClass('last')) {
+
+    var nextCircle = $('.first')
+
+    activeCircle.removeClass('active_circle');
+    nextCircle.addClass('active_circle');
+  }else{
+
+    var nextCircle = activeCircle.next('i');
+
+    activeCircle.removeClass('active_circle');
+    nextCircle.addClass('active_circle');
+  }
+}
+
 // function per il tasto prev
 function prevClick(){
 
@@ -32,7 +51,7 @@ function prevClick(){
 
   if (activeImg.hasClass('first')) {
 
-    var prevImg = $('img.last');
+    var prevImg = $('.last');
 
     activeImg.removeClass('active');
     prevImg.addClass('active');
@@ -44,12 +63,32 @@ function prevClick(){
   }
 }
 
+function prevClickCircle(){
+
+  var activeCircle = $('.active_circle');
+
+  if (activeCircle.hasClass('first')) {
+
+    var prevCircle = $('.last')
+
+    activeCircle.removeClass('active_circle');
+    prevCircle.addClass('active_circle');
+  }else{
+    var prevCircle = activeCircle.prev('i');
+
+    activeCircle.removeClass('active_circle');
+    prevCircle.addClass('active_circle');
+  }
+}
+
 function init (){
 
+  $('.prev').click(prevClickCircle);
   $('.prev').click(prevClick);
   // creo 2 collegamenti in ready,
   // uno per PREV e uno per NEXT
   $('.next').click(nextClick);
+  $('.next').click(nextClickCircle);
 }
 
 // questo è il modo per richiamare il JS quando in html
